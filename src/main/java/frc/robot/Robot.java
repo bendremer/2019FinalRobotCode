@@ -11,6 +11,7 @@ import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PIDController;
@@ -61,6 +62,7 @@ public class Robot extends TimedRobot {
   public static ElevatorWinch elevatorWinch = new ElevatorWinch();
   public static FrontClimber frontClimber = new FrontClimber();
   public static UsbCamera camera;
+ 
   public Command elevatorTuning = new ElevatorTune();
   // public static PIDElevator pIDElevatorWinch = new PIDElevator();
   // public static DoubleSolenoid hatchPusher = new DoubleSolenoid(RobotMap.hatchSole1, RobotMap.hatchSole2);
@@ -90,8 +92,6 @@ public class Robot extends TimedRobot {
     driveSub.encoderInit();
     driveSub.gyroReset();
     driveSub.gryoInit();
-
-    SmartDashboard.putData("Reset Winch Encoders", new ResetElevatorEncoderCommand());
   
     System.out.printf("robotInit");
 
@@ -126,6 +126,7 @@ public class Robot extends TimedRobot {
     driveSub.encoderUpdate();
     driveSub.gyroUpdate();
     Robot.elevatorWinch.eleEncoderUpdate();
+    Robot.elevatorWinch.updateElevatorStatus();
 
    }
 
@@ -185,6 +186,7 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+    SmartDashboard.putData("Reset Winch Encoders", new ResetElevatorEncoderCommand());
     SmartDashboard.putData("ElevatorTilt: Forward", new ElevatorTiltCmd(Value.kForward));
     SmartDashboard.putData("ElevatorTilt: Back", new ElevatorTiltCmd(Value.kReverse));
     driveSub.gyroReset();

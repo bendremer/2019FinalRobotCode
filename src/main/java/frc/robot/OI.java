@@ -57,7 +57,7 @@ public class OI {
   // Once you have a button, it's trivial to bind it to a button in one of
   // three ways:
 
-  public OI() {
+    public OI() {
     // Elevator Tilt
     //eight.whenPressed(new ElevatorTiltCmd(Value.kForward)); //TILT COMMANDS, WORKING
     //ten.whenPressed(new ElevatorTiltCmd(Value.kReverse)); //TILT COMMANDS, WORKING

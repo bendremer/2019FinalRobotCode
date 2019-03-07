@@ -53,8 +53,9 @@ public class RobotMap {
   public static int elevatorEncoderPort1 = 4;
   public static int elevatorEncoderPort2 = 5;
 
-  //Intake Limit Switch
-    public static int limit = 7;
+  //Limit Switches
+    public static int intakeLimitPort = 7;
+    public static int elevatorLimitPort = 8;
 
     //Solenoid Valves for Pneumatics
   public static int eleSole1 = 1;

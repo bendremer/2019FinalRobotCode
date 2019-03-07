@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,6 +21,7 @@ import frc.robot.commands.ElevatorWinchCmd;
 public class ElevatorWinch extends Subsystem {
   public static PWMVictorSPX elevatorWinch = new PWMVictorSPX(RobotMap.elevator);
   public static Encoder elevatorEncoder = new Encoder(RobotMap.elevatorEncoderPort1, RobotMap.elevatorEncoderPort2);
+  public static DigitalInput elevatorLimitSwitch  = new DigitalInput(RobotMap.elevatorLimitPort);
   public static double setHeight; 
   public static double height;
   public static double secondLevelHeight = 2500;
@@ -40,8 +42,20 @@ public class ElevatorWinch extends Subsystem {
     height = elevatorEncoder.getRaw(); // - RAW for testing 2/10/19 Encoder not working
 
     SmartDashboard.putNumber("Height", height);
-
   }
+
+  public boolean elevatorLimitPressed() {
+		return !elevatorLimitSwitch.get();
+	}
+	
+	public void updateElevatorStatus() {
+    SmartDashboard.putBoolean("Elevator Limit", elevatorLimitPressed());
+		if (elevatorLimitPressed()) {
+      ElevatorEncoderReset();
+      System.out.println("*** Resetting Elevator Encoder ***");
+		}
+}
+
   public void rollUp(){
     elevatorWinch.setSpeed(.65); //+ stopPower(height)); was .6, 
   }
@@ -65,7 +79,7 @@ public class ElevatorWinch extends Subsystem {
     if(height > secondLevelHeight){
       return (.1); //AJUST UNTIL STOPS was .2 2/17/19
     }else{
-      return(.1); //SAME HERE was .16 2/17/19
+      return(.07); //SAME HERE was .16 2/17/19
     }
 
     //return 0;

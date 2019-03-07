@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 public class CargoLoader extends Subsystem {
   public static PWMVictorSPX leftArm = new PWMVictorSPX(RobotMap.armLeft);
   public static PWMVictorSPX rightArm = new PWMVictorSPX(RobotMap.armRight);
-  public static DigitalInput limitSwitch = new DigitalInput(RobotMap.limit);
+  public static DigitalInput limitSwitch = new DigitalInput(RobotMap.intakeLimitPort);
   // Counter counter = new Counter(limitSwitch);
 
   // Put methods for controlling this subsystem
