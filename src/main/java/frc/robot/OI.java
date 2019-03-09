@@ -38,6 +38,7 @@ public class OI {
   // Joystick stick = new Joystick(port);
   // Button button = new JoystickButton(stick, buttonNumber);
   public Joystick joystickZero = new Joystick(0);
+  public Joystick joystickOne = new Joystick(1);
   // There are a few additional built in buttons you can use. Additionally,
   // by subclassing Button you can create custom triggers and bind those to
   // commands the same as any other Button.
@@ -53,6 +54,14 @@ public class OI {
   Button ten = new JoystickButton(joystickZero, 10);
   public Button eleven = new JoystickButton(joystickZero, 11);
   Button twelve = new JoystickButton(joystickZero, 12);
+
+  public Button altOne = new JoystickButton(joystickOne, 1);
+  public Button altTwo = new JoystickButton(joystickOne, 2);
+  public Button altThree = new JoystickButton(joystickOne, 3);
+  public Button altFour = new JoystickButton(joystickOne, 4);
+
+  public double joyOneVal = Robot.m_oi.joystickOne.getX();
+
   //// TRIGGERING COMMANDS WITH BUTTONS
   // Once you have a button, it's trivial to bind it to a button in one of
   // three ways:
@@ -78,9 +87,23 @@ public class OI {
     //Winch Height
     eleven.whenPressed(new ElevatorWinchCmd(0));
     //three.whenPressed(new Autofront());
-    twelve.whenPressed(new ElevatorWinchCmd(1000)); //CHANGE TO CALCULATED VALUE HEIGHTS 
-    nine.whenPressed(new ElevatorWinchCmd(2500));
-    ten.whenPressed(new ElevatorWinchCmd(2750));
+    altOne.whenPressed(new ElevatorWinchCmd(1000)); //CHANGE TO CALCULATED VALUE HEIGHTS 
+    altTwo.whenPressed(new ElevatorWinchCmd(2500));
+    altThree.whenPressed(new ElevatorWinchCmd(2750));
+    
+    
+
+    joyOneVal = Robot.m_oi.joystickOne.getX();
+    if (joyOneVal <= 0.1 && joyOneVal >= -0.1) {
+        Robot.elevatorWinch.stop();
+    } else if (joyOneVal >= 0.9) {
+        System.out.println("Rolling Up w/ Arcade Joystick");
+        Robot.elevatorWinch.rollUpSlow();
+    } else if (joyOneVal <= -0.9) {
+        Robot.elevatorWinch.rollDownSlow();
+        System.out.println("Rolling Down w/ Arcade Joystick");
+    }
+    
 
     /*  COMMANDS
         Buttons - 13

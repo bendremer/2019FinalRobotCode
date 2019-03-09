@@ -15,6 +15,7 @@ import frc.robot.Robot;
  */
 public class ElevatorTune extends Command {
     int joyPOVVal;
+    double joyOneVal;
   public ElevatorTune() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.m_subsystem);
@@ -28,6 +29,7 @@ public class ElevatorTune extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    //System.out.println("owo");
     joyPOVVal = Robot.m_oi.joystickZero.getPOV();
     if (joyPOVVal == -1) {
         Robot.elevatorWinch.stop();
@@ -35,6 +37,16 @@ public class ElevatorTune extends Command {
         Robot.elevatorWinch.rollUpSlow();
     } else if (joyPOVVal > 90 && joyPOVVal < 270) {
         Robot.elevatorWinch.rollDownSlow();
+    }
+    joyOneVal = Robot.m_oi.joystickOne.getX();
+    if (joyOneVal <= 0.1 && joyOneVal >= -0.1) {
+        Robot.elevatorWinch.stop();
+    } else if (joyOneVal >= 0.9) {
+        System.out.println("Rolling Up w/ Arcade Joystick");
+        Robot.elevatorWinch.rollUpSlow();
+    } else if (joyOneVal <= -0.9) {
+        Robot.elevatorWinch.rollDownSlow();
+        System.out.println("Rolling Down w/ Arcade Joystick");
     }
   }
 
