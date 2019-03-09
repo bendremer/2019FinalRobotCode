@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -51,8 +52,10 @@ import frc.robot.subsystems.HatchRelease;
 
 
 public class Robot extends TimedRobot {
-
   public static final String MecanumDriver = null;
+  // the following two are new!
+  public static Timer time = new Timer();
+  public static RobotState robotState = RobotState.getInstance();
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
   public static DriveSub driveSub = new DriveSub();
