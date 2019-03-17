@@ -47,13 +47,14 @@ public class DriveSub extends Subsystem {
   public static Encoder m_encoderRight = new Encoder(RobotMap.rightEncoderPort1, RobotMap.rightEncoderPort2, false, Encoder.EncodingType.k4X);
   public static Encoder m_encoderLeft = new Encoder(RobotMap.leftEncoderPort1, RobotMap.leftEncoderPort2, true, Encoder.EncodingType.k4X);
   public static final DifferentialDrive DriveBase = new DifferentialDrive(Gleft, Gright);
-  public double minTurnSpeed = .57;
+  public double minTurnSpeed = .45;
+
 
   //public static ADXRS450_Gyro Gyro = new ADXRS450_Gyro(); 
   public static AHRS Gyro = new AHRS(SPI.Port.kMXP);
 
   public void robotDriver(Joystick joystickZero){
-    DriveBase.arcadeDrive(squareInput(-joystickZero.getY())/1.5, squareInput(joystickZero.getZ())/2);
+    DriveBase.arcadeDrive(squareInput(-joystickZero.getY())/1.3, squareInput(joystickZero.getZ())/1.2);
     //DriveBase.arcadeDrive(-joystickZero.getY()/2,joystickZero.getZ()/2);
     //SmartDashboard.putNumber("comm", 15);
     }
@@ -123,9 +124,20 @@ public class DriveSub extends Subsystem {
 
   public void driveForward(double speed){
     double strturningValue = (0 - Gyro.getAngle()) * kP;
-    // Invert the direction of the turn if we are going backwards
-    // turningValue = Math.copySign(turningValue, speed);
+    //Invert the direction of the turn if we are going backwards
+    //turningValue = Math.copySign(turningValue, speed);
     //DriveBase.setExpiration(.4);
+    DriveBase.setSafetyEnabled(false);
+    DriveBase.arcadeDrive(speed, strturningValue);
+  }
+
+  public void driveBackward(double speed){
+    double strturningValue = (0 - Gyro.getAngle()) * kP;
+    //Invert the direction of the turn if we are going backwards
+    //turningValue = Math.copySign(turningValue, speed);
+    turningValue = -turningValue;
+    //DriveBase.setExpiration(.4);
+    DriveBase.setSafetyEnabled(false);
     DriveBase.arcadeDrive(speed, strturningValue);
   }
 

@@ -9,19 +9,25 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 public class Autofront extends CommandGroup {
   /**
    * Add your docs here.
    */
   public Autofront() {
-    
-    
-    addSequential(new DriveForwardCmd(60, .4));
+      
+    addSequential(new DriveForwardCmd(60,.6)); //Don't know for center
+    //addSequential(new DriveForwardCmd(2,.5)); //Use this for testing
+    //addSequential(new RotateCmd(90));
+    //addSequential(new ResetElevatorEncoderCommand());
+    //addSequential(new ElevatorWinchCmd(450));
+    //addSequential(new YeetCargoCmd());
+    //addParallel(new DriveBackwardCmd(8,.5));
     addSequential(new ElevatorTiltCmd(Value.kForward));
-    addSequential(new ElevatorWinchCmd(-1000));
-    addSequential(new RotateCmd(45));
-    addSequential(new ElevatorWinchCmd(1000));
+    addSequential(new WaitCommand(2));
+    addSequential(new ElevatorDownResetCmd());
+    addSequential(new ElevatorWinchCmd(150));
     
     // Add Commands here:
     // e.g. addSequential(new Command1());

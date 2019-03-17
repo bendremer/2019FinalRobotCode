@@ -52,7 +52,11 @@ public class ElevatorWinch extends Subsystem {
     SmartDashboard.putBoolean("Elevator Limit", elevatorLimitPressed());
 		if (elevatorLimitPressed()) {
       ElevatorEncoderReset();
-      System.out.println("*** Resetting Elevator Encoder ***");
+      while (elevatorEncoder.getRaw() <= 20) { //was0
+        elevatorWinch.setSpeed(.3);
+      }
+      elevatorWinch.setSpeed(.08);
+      System.out.println("*** Elevator Limit Switch Pressed ***");
 		}
 }
 

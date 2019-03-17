@@ -32,7 +32,7 @@ public class FrontClimber extends Subsystem {
     //}
 
   public void FrontDown(){
-    frontLift.setSpeed(0.45);
+    frontLift.setSpeed(0.75);
     }
 
   public void FrontUp(){

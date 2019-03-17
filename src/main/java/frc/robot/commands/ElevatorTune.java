@@ -34,20 +34,22 @@ public class ElevatorTune extends Command {
     if (joyPOVVal == -1) {
         Robot.elevatorWinch.stop();
     } else if (joyPOVVal < 90 || joyPOVVal > 270) {
+        System.out.println("Rolling Up w/ Main Directional Joystick");
         Robot.elevatorWinch.rollUpSlow();
     } else if (joyPOVVal > 90 && joyPOVVal < 270) {
+        System.out.println("Rolling Down w/ Main Directional Joystick");
         Robot.elevatorWinch.rollDownSlow();
     }
-    joyOneVal = Robot.m_oi.joystickOne.getX();
-    if (joyOneVal <= 0.1 && joyOneVal >= -0.1) {
-        Robot.elevatorWinch.stop();
-    } else if (joyOneVal >= 0.9) {
-        System.out.println("Rolling Up w/ Arcade Joystick");
-        Robot.elevatorWinch.rollUpSlow();
-    } else if (joyOneVal <= -0.9) {
-        Robot.elevatorWinch.rollDownSlow();
-        System.out.println("Rolling Down w/ Arcade Joystick");
-    }
+    //joyOneVal = Robot.m_oi.joystickOne.getX();
+    //if (joyOneVal <= 0.1 && joyOneVal >= -0.1) {
+    //    Robot.elevatorWinch.stop();
+    //} else if (joyOneVal >= 0.9) {
+    //    System.out.println("Rolling Up w/ Arcade Joystick");
+    //    Robot.elevatorWinch.rollUpSlow();
+    //} else if (joyOneVal <= -0.9) {
+    //    Robot.elevatorWinch.rollDownSlow();
+    //    System.out.println("Rolling Down w/ Arcade Joystick");
+    //}
   }
 
   // Make this return true when this Command no longer needs to run execute()

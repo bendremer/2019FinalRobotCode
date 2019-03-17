@@ -33,14 +33,18 @@ public class CargoLoader extends Subsystem {
   // }
 
   public void Rollin(){
-    leftArm.setSpeed(0.3);  //was 0.3, testing using controller for front climbing motor
-    rightArm.setSpeed(0.3);
+    leftArm.setSpeed(0.5);  //was 0.3, testing using controller for front climbing motor
+    //rightArm.setSpeed(0.3);
 
   }
 
   public void Rollout(){
-    leftArm.setSpeed(-0.6); //was -0.6, testing using controller for front climbing motor
-    rightArm.setSpeed(-0.6);
+    leftArm.setSpeed(-0.8); //was -0.6, testing using controller for front climbing motor
+    //rightArm.setSpeed(-0.6);
+  }
+
+  public void RollStop(){
+    leftArm.setSpeed(0); 
   }
 
   // public boolean isswitchset(){

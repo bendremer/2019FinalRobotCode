@@ -12,7 +12,9 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.Autofront;
+import frc.robot.commands.DriveBackwardCmd;
 import frc.robot.commands.DriveForwardCmd;
+import frc.robot.commands.ElevatorDownResetCmd;
 import frc.robot.commands.ElevatorTiltCmd;
 import frc.robot.commands.ElevatorWinchCmd;
 import frc.robot.commands.FrontDownCmd;
@@ -30,6 +32,15 @@ import frc.robot.commands.RotateCmd;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+  public double bottom = 50;
+  public double Hatchpickup = 1120;
+  public double HighCargo = 11496;
+  public double middle = 7602;
+  public double lowcargo = 3825;
+  public double cargoshipc = 5000;
+  public double midhatch = 000000;
+  public double highhatch = 0000000;
+
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
   //// joystick.
@@ -49,33 +60,53 @@ public class OI {
   public Button five = new JoystickButton(joystickZero, 5);
   public Button six = new JoystickButton(joystickZero, 6);
   public Button seven = new JoystickButton(joystickZero, 7);
-  Button eight = new JoystickButton(joystickZero, 8);
+  public Button eight = new JoystickButton(joystickZero, 8);
   public Button nine = new JoystickButton(joystickZero, 9);
-  Button ten = new JoystickButton(joystickZero, 10);
+  public Button ten = new JoystickButton(joystickZero, 10);
   public Button eleven = new JoystickButton(joystickZero, 11);
-  Button twelve = new JoystickButton(joystickZero, 12);
+  public Button twelve = new JoystickButton(joystickZero, 12);
 
-  public Button altOne = new JoystickButton(joystickOne, 1);
-  public Button altTwo = new JoystickButton(joystickOne, 2);
-  public Button altThree = new JoystickButton(joystickOne, 3);
-  public Button altFour = new JoystickButton(joystickOne, 4);
-
-  public double joyOneVal = Robot.m_oi.joystickOne.getX();
+  public Button altone = new JoystickButton(joystickOne, 1);
+  public Button alttwo = new JoystickButton(joystickOne, 2);
+  public Button altthree = new JoystickButton(joystickOne, 3);
+  public Button altfour = new JoystickButton(joystickOne, 4);
+  public Button altfive = new JoystickButton(joystickOne, 5);
+  public Button altsix = new JoystickButton(joystickOne, 6);
+  public Button altseven = new JoystickButton(joystickOne, 7);
+  public Button alteight = new JoystickButton(joystickOne, 8);
+  public Button altnine = new JoystickButton(joystickOne, 9);
+  public Button altten = new JoystickButton(joystickOne, 10);
+  public Button alteleven = new JoystickButton(joystickOne, 11);
+  public Button alttwelve = new JoystickButton(joystickOne, 12);
+  
+  //public double joyOneVal = Robot.m_oi.joystickOne.getX();
 
   //// TRIGGERING COMMANDS WITH BUTTONS
   // Once you have a button, it's trivial to bind it to a button in one of
   // three ways:
 
     public OI() {
-    // Elevator Tilt
+    // Experimental
+    // nine.whenPressed(new RotateCmd(90));
+    // Elevator Tilt  -- Now using Shffle Board Buttons
     //eight.whenPressed(new ElevatorTiltCmd(Value.kForward)); //TILT COMMANDS, WORKING
     //ten.whenPressed(new ElevatorTiltCmd(Value.kReverse)); //TILT COMMANDS, WORKING
-    //eleven.whenPressed(new ElevatorWinchCmd(10688));
-    //twelve.whenPressed(new ElevatorWinchCmd(-7168));
-    //nine.whenPressed(new ElevatorWinchCmd(7104));
-    //ten.whenPressed(new ElevatorWinchCmd(3584));
-    //seven.whenPressed(new ElevatorWinchCmd(4950));
-    
+      
+    // HEIGHTS FROM WALPOLE
+
+    // Hatch Pickup From Loading Station: 1120
+    // Cargo Ship Cargo: 5000
+    // Cargo Ship Hatch Panel: 1120 (Based on Loading Station)
+
+
+    // Lower Rocket Cargo: 3825
+    // Middle Rocket Cargo: 7602
+    // High Rocket Cargo: 11496
+
+    // Lower Rocket Hatch: 1120 (Based on Loading Station)
+    // Middle Rocket Hatch:
+    // High Rocket Hatch: 
+
     //Intake
     thumb.whileHeld(new RollinCmd());
     trigger.whileHeld(new RolloutCmd());
@@ -85,24 +116,44 @@ public class OI {
     eight.whileHeld(new FrontDownCmd());
 
     //Winch Height
-    eleven.whenPressed(new ElevatorWinchCmd(0));
+    eleven.whenPressed(new ElevatorWinchCmd(5000));
+    //twelve.whenPressed(new ElevatorWinchCmd(500));
+
+    altnine.whenPressed(new ElevatorWinchCmd(5000));
+    altone.whenPressed(new ElevatorWinchCmd(5214)); //midhatch
+    altthree.whenPressed(new ElevatorWinchCmd(3100)); //lowcargo
+    altfour.whenPressed(new ElevatorWinchCmd(7130)); //midcargo
+    alttwo.whenPressed(new ElevatorWinchCmd(8938)); //highhatch
+    altsix.whenPressed(new ElevatorWinchCmd(10700));//highcargo
+    altfive.whenPressed(new ElevatorWinchCmd(1000)); //Hatchpanel
+    altten.whenPressed(new ElevatorWinchCmd(5000));
+    // nine.whenPressed(new ElevatorTiltCmd(Value.kForward));
+    alttwelve.whenPressed(new ElevatorTiltCmd(Value.kReverse));
+
     //three.whenPressed(new Autofront());
-    altOne.whenPressed(new ElevatorWinchCmd(1000)); //CHANGE TO CALCULATED VALUE HEIGHTS 
-    altTwo.whenPressed(new ElevatorWinchCmd(2500));
-    altThree.whenPressed(new ElevatorWinchCmd(2750));
-    
+    //altOne.whenPressed(new ElevatorWinchCmd(1000)); //CHANGE TO CALCULATED VALUE HEIGHTS 
+    //altTwo.whenPressed(new ElevatorWinchCmd(2500));
+    //altThree.whenPressed(new ElevatorWinchCmd(2750));
+    /* //second joystick
+    altnine.whenPressed(new ElevatorWinchCmd(5214)); //midhatch
+    alteight.whenPressed(new ElevatorWinchCmd(3100)); //lowcargo
+    altten.whenPressed(new ElevatorWinchCmd(7130)); //midcargo
+    alteleven.whenPressed(new ElevatorWinchCmd(8938)); //highhatch
+    alttwelve.whenPressed(new ElevatorWinchCmd(10700));//highcargo
+    altseven.whenPressed(new ElevatorWinchCmd(1000)); //Hatchpanel
+    */
     
 
-    joyOneVal = Robot.m_oi.joystickOne.getX();
-    if (joyOneVal <= 0.1 && joyOneVal >= -0.1) {
-        Robot.elevatorWinch.stop();
-    } else if (joyOneVal >= 0.9) {
-        System.out.println("Rolling Up w/ Arcade Joystick");
-        Robot.elevatorWinch.rollUpSlow();
-    } else if (joyOneVal <= -0.9) {
-        Robot.elevatorWinch.rollDownSlow();
-        System.out.println("Rolling Down w/ Arcade Joystick");
-    }
+    //joyOneVal = Robot.m_oi.joystickOne.getX();
+    //if (joyOneVal <= 0.1 && joyOneVal >= -0.1) {
+    //    Robot.elevatorWinch.stop();
+    //} else if (joyOneVal >= 0.9) {
+    //    System.out.println("Rolling Up w/ Arcade Joystick");
+    //    Robot.elevatorWinch.rollUpSlow();
+    //} else if (joyOneVal <= -0.9) {
+    //    Robot.elevatorWinch.rollDownSlow();
+    //    System.out.println("Rolling Down w/ Arcade Joystick");
+    //}
     
 
     /*  COMMANDS
@@ -126,8 +177,9 @@ public class OI {
     */
     
     // Rotate and Drive Commands
-    //eleven.whenPressed(new RotateCmd(25)); 
-    //twelve.whenPressed(new RotateCmd(-25)); 
+    //eleven.whenPressed(new RotateCmd(90)); //Use these for testing
+    //twelve.whenPressed(new RotateCmd(-90)); 
+    //twelve.whenPressed(new DriveBackwardCmd(2,.5));
     
     // Hatch Release Command
     six.whenPressed(new PushoutCmd());

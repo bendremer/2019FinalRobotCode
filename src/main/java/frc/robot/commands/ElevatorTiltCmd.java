@@ -40,7 +40,9 @@ public class ElevatorTiltCmd extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if (ElevatorTilt.elevatorSole1.get() == direction){
+    if (Robot.m_oi.joystickZero.getRawButton(9)) {
+      return true;
+    } else if (ElevatorTilt.elevatorSole1.get() == direction){
       return true;
     }else{
       return false;

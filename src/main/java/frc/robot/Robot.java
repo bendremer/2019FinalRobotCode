@@ -26,6 +26,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.SPI;
 import frc.robot.commands.Autofront;
+import frc.robot.commands.DriveCmd;
+import frc.robot.commands.AutoRight;
+import frc.robot.commands.AutoLeft;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.ResetElevatorEncoderCommand;
 import frc.robot.subsystems.DriveSub;
@@ -64,6 +67,7 @@ public class Robot extends TimedRobot {
   public static UsbCamera camera;
  
   public Command elevatorTuning = new ElevatorTune();
+  public Command drivingCmd = new DriveCmd();
   // public static PIDElevator pIDElevatorWinch = new PIDElevator();
   // public static DoubleSolenoid hatchPusher = new DoubleSolenoid(RobotMap.hatchSole1, RobotMap.hatchSole2);
 
@@ -83,9 +87,11 @@ public class Robot extends TimedRobot {
 
     m_oi = new OI();
     
-    m_chooser.addDefault("Default Auto", new ExampleCommand());
-    m_chooser.addObject("Front", new Autofront());
-    m_chooser.addObject("Left", new Autofront());
+    //m_chooser.addDefault("Default Auto", new ExampleCommand());
+    m_chooser.addObject("Center", new Autofront());
+    m_chooser.addObject("Left", new AutoLeft());
+    m_chooser.addObject("Right", new AutoRight());
+
     SmartDashboard.putData("Auto mode", m_chooser);
   
     driveSub.encoderReset();
@@ -123,6 +129,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    Scheduler.getInstance().run();
     driveSub.encoderUpdate();
     driveSub.gyroUpdate();
     Robot.elevatorWinch.eleEncoderUpdate();
@@ -157,6 +164,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    
     m_autonomousCommand = m_chooser.getSelected();
 
     /*
@@ -168,6 +176,7 @@ public class Robot extends TimedRobot {
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
+      Robot.elevatorWinch.ElevatorEncoderReset();
       m_autonomousCommand.start();
     }
   }
@@ -177,6 +186,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+    if (m_oi.joystickZero.getRawButton(9)) {
+      m_autonomousCommand.cancel();
+      elevatorTuning.start();
+      drivingCmd.start();
+    }
     Scheduler.getInstance().run();
   }
 
@@ -201,8 +215,9 @@ public class Robot extends TimedRobot {
     // if (Robot.hatchRelease.hatchout() == false){
     //   Robot.hatchRelease.hatchPusher.set(DoubleSolenoid.Value.kOff);
     //   }
-
-    elevatorTuning.start(); // Starts elevator control using the POV control on the joystick
+    if (!elevatorTuning.isRunning()) {
+      elevatorTuning.start(); // Starts elevator control using the POV control on the joystick
+    }
     
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();

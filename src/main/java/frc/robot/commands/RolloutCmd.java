@@ -41,7 +41,7 @@ public class RolloutCmd extends Command {
   @Override
   protected void end() {
     CargoLoader.leftArm.stopMotor();
-    CargoLoader.rightArm.stopMotor();
+    //CargoLoader.rightArm.stopMotor(); Removed Motor
     //ADDED
   }
 
@@ -50,6 +50,6 @@ public class RolloutCmd extends Command {
   @Override
   protected void interrupted() {
     CargoLoader.leftArm.stopMotor();
-    CargoLoader.rightArm.stopMotor();
+    //CargoLoader.rightArm.stopMotor(); Removed Motor
   }
 }

@@ -8,11 +8,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.Robot;
 
 public class DriveForwardCmd extends Command {
   double driveDistance;
   double driveSpeed;
+  double driveTollerance = 5;
 
   public DriveForwardCmd(double distance, double speed) {
     // Use requires() here to declare subsystem dependencies
@@ -35,12 +37,15 @@ public class DriveForwardCmd extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.driveSub.avgDistance < driveDistance - (driveDistance/10)){
+    Robot.driveSub.encoderUpdate();
+   // if(Robot.driveSub.avgDistance < driveDistance - (driveDistance/10)){
+      if(Robot.driveSub.avgDistance < driveDistance){
       Robot.driveSub.driveForward(driveSpeed);
     } else {
       Robot.driveSub.driveForward(.25);
     }
-    
+    System.out.print("Average Distance:    ");
+    System.out.println(Robot.driveSub.avgDistance);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -48,9 +53,9 @@ public class DriveForwardCmd extends Command {
   protected boolean isFinished() {
     if(Robot.driveSub.distanceRight < driveDistance){ //change DISTANCERIGHT TO AVERAGE ONCE FIXED
       return false;
-      } else {
+    } else {
       return true;
-      }
+    }
   }
 
   // Called once after isFinished returns true
