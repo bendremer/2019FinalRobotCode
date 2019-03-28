@@ -11,24 +11,24 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
-public class AutoLeft extends CommandGroup {
+public class AutoLeft3 extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public AutoLeft() {
+  public AutoLeft3() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
     // these will run in order.
    
-    addSequential(new DriveForwardCmd(182,.6)); //This was good in Walpole
+    addSequential(new DriveForwardCmd(250,.6)); //This was good in Walpole
     //addSequential(new DriveForwardCmd(2,.5)); //Use this for testing
     addSequential(new ResetElevatorEncoderCommand());
     addSequential(new ElevatorWinchCmd(450));
     addSequential(new RotateCmd(90));
 
     addSequential(new YeetCargoCmd());
-    addSequential(new DriveBackwardCmd(20,.6));
+    addSequential(new DriveBackwardCmd(12,.6));
     addSequential(new ElevatorTiltCmd(Value.kForward));
     addSequential(new WaitCommand(2));
     addSequential(new ElevatorDownResetCmd());

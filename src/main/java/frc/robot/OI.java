@@ -128,7 +128,7 @@ public class OI {
     altfive.whenPressed(new ElevatorWinchCmd(1000)); //Hatchpanel
     altten.whenPressed(new ElevatorWinchCmd(5000));
     // nine.whenPressed(new ElevatorTiltCmd(Value.kForward));
-    alttwelve.whenPressed(new ElevatorTiltCmd(Value.kReverse));
+    alttwelve.whenPressed(new DriveBackwardCmd(5, .4));
 
     //three.whenPressed(new Autofront());
     //altOne.whenPressed(new ElevatorWinchCmd(1000)); //CHANGE TO CALCULATED VALUE HEIGHTS 

@@ -27,8 +27,12 @@ import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.SPI;
 import frc.robot.commands.Autofront;
 import frc.robot.commands.DriveCmd;
-import frc.robot.commands.AutoRight;
-import frc.robot.commands.AutoLeft;
+import frc.robot.commands.AutoRight1;
+import frc.robot.commands.AutoRight2;
+import frc.robot.commands.AutoRight3;
+import frc.robot.commands.AutoLeft1;
+import frc.robot.commands.AutoLeft2;
+import frc.robot.commands.AutoLeft3;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.ResetElevatorEncoderCommand;
 import frc.robot.subsystems.DriveSub;
@@ -89,8 +93,13 @@ public class Robot extends TimedRobot {
     
     //m_chooser.addDefault("Default Auto", new ExampleCommand());
     m_chooser.addObject("Center", new Autofront());
-    m_chooser.addObject("Left", new AutoLeft());
-    m_chooser.addObject("Right", new AutoRight());
+    m_chooser.addObject("Left1", new AutoLeft1());
+    m_chooser.addObject("Left2", new AutoLeft2());
+    m_chooser.addObject("Left3", new AutoLeft3());
+
+    m_chooser.addObject("Right1", new AutoRight1());
+    m_chooser.addObject("Right2", new AutoRight2());
+    m_chooser.addObject("Right3", new AutoRight3());
 
     SmartDashboard.putData("Auto mode", m_chooser);
   

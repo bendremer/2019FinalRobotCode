@@ -61,10 +61,10 @@ public class ElevatorWinch extends Subsystem {
 }
 
   public void rollUp(){
-    elevatorWinch.setSpeed(.65); //+ stopPower(height)); was .6, 
+    elevatorWinch.setSpeed(.75); //+ stopPower(height)); was .6, 
   }
   public void rollDown(){
-    elevatorWinch.setSpeed(-.4); // + stopPower(height)); //was -.2
+    elevatorWinch.setSpeed(-.5); // + stopPower(height)); //was -.2
   }
   public void stop(){
     elevatorWinch.setSpeed(stopPower(height));

@@ -48,15 +48,38 @@ public class DriveSub extends Subsystem {
   public static Encoder m_encoderLeft = new Encoder(RobotMap.leftEncoderPort1, RobotMap.leftEncoderPort2, true, Encoder.EncodingType.k4X);
   public static final DifferentialDrive DriveBase = new DifferentialDrive(Gleft, Gright);
   public double minTurnSpeed = .45;
+  public double zValue;
+  public double yValue;
+  public double zAdjustedValue;
+  public double yAdjustedValue;
 
 
   //public static ADXRS450_Gyro Gyro = new ADXRS450_Gyro(); 
   public static AHRS Gyro = new AHRS(SPI.Port.kMXP);
 
   public void robotDriver(Joystick joystickZero){
-    DriveBase.arcadeDrive(squareInput(-joystickZero.getY())/1.3, squareInput(joystickZero.getZ())/1.2);
-    //DriveBase.arcadeDrive(-joystickZero.getY()/2,joystickZero.getZ()/2);
-    //SmartDashboard.putNumber("comm", 15);
+    // Experimental throttle curbve stuff -- Originall arcadeDeive line is below (commented out)
+    yValue=joystickZero.getY();
+    zValue=joystickZero.getZ();
+    yAdjustedValue=squareInput(-yValue)/1.3;
+    zAdjustedValue=squareInput(zValue)/1.2;
+    
+    if (Math.abs(zValue)>.1 && zValue<0){ 
+      zAdjustedValue=(squareInput(zValue)/2)-.45;
+     }
+    if (Math.abs(zValue)>.1 && zValue>0){ 
+      zAdjustedValue=(squareInput(zValue)/1.3)+.45;
+    }
+    
+    //This next line overrides all the other stuff and feeds straight joystic values.
+    zAdjustedValue=zValue;
+    System.out.print("Z JoyStick: ");
+    System.out.print(zValue);
+    System.out.print(" Adjsuted Z JoyStick: ");
+    System.out.println(zAdjustedValue);
+    
+    DriveBase.arcadeDrive(yAdjustedValue, zAdjustedValue);
+    //DriveBase.arcadeDrive(squareInput(-joystickZero.getY())/1.3, squareInput(joystickZero.getZ())/1.2);
     }
 
   public double squareInput(double input){
@@ -66,7 +89,6 @@ public class DriveSub extends Subsystem {
       return (input*input);
     }
   }
-
 
 
   public void encoderInit(){
@@ -103,9 +125,9 @@ public class DriveSub extends Subsystem {
     roll = Gyro.getRoll();
     pitch = Gyro.getPitch();
     SmartDashboard.putNumber("Angle", angle);
-    SmartDashboard.putNumber("Roll", roll);
-    SmartDashboard.putNumber("pitch", pitch);
-    SmartDashboard.putNumber("Gyro", angle);
+    //SmartDashboard.putNumber("Roll", roll);
+    //SmartDashboard.putNumber("pitch", pitch);
+    //SmartDashboard.putNumber("Gyro", angle);
   }
 
   public void encoderUpdate(){

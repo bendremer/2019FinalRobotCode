@@ -39,13 +39,14 @@ public class PIDElevator extends PIDSubsystem {
   public PIDElevator() {
     // Intert a subsystem name and PID values here
     super("PIDElevator", 1, 2, 3);
-    setAbsoluteTolerance(0.05);
+    setAbsoluteTolerance(10);
     getPIDController().setContinuous(false);
     // Use these to get going:
      //- Sets where the PID controller should move the system
     // to
     // enable() - Enables the PID controller.
   }
+
 
   @Override
   public void initDefaultCommand() {
