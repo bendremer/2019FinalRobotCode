@@ -22,14 +22,14 @@ public class AutoRight2 extends CommandGroup {
     // these will run in order.
     
      
-    addSequential(new DriveForwardCmd(200,.6)); //This was good in Walpole
+    addSequential(new DriveForwardCmd(205,.6)); //This was good in Walpole
     //addSequential(new DriveForwardCmd(2,.5)); //Use this for testing
     addSequential(new ResetElevatorEncoderCommand());
     addSequential(new ElevatorWinchCmd(450));
     addSequential(new RotateCmd(-90));
 
     addSequential(new YeetCargoCmd());
-    addSequential(new DriveBackwardCmd(20,.6));
+    addSequential(new DriveBackwardCmd(12,.6));
     addSequential(new ElevatorTiltCmd(Value.kForward));
     addSequential(new WaitCommand(2));
     addSequential(new ElevatorDownResetCmd());

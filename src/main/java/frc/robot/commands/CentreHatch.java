@@ -17,12 +17,12 @@ public class CentreHatch extends CommandGroup {
    * Add your docs here.
    */
   public CentreHatch() { 
-    addSequential(new DriveForwardCmd(60,.6)); 
+    addSequential(new DriveForwardCmd(100,.55)); 
     addSequential(new ElevatorTiltCmd(Value.kForward));
     addSequential(new WaitCommand(2));
     addSequential(new ElevatorDownResetCmd());
-    addSequential(new ElevatorWinchCmd(1000));
-    addSequential(new DriveForwardCmd(5,.666));
+    addSequential(new ElevatorWinchCmd(500));
+    addSequential(new DriveForwardCmd(18,.45));
     addSequential(new ElevatorDownResetCmd());
     addSequential(new DriveBackwardCmd(20,.6));
     // Add Commands here:

@@ -119,17 +119,17 @@ public class OI {
     eleven.whenPressed(new ElevatorWinchCmd(5000));
     //twelve.whenPressed(new ElevatorWinchCmd(500));
 
-    altnine.whenPressed(new ElevatorWinchCmd(5000));
-    altone.whenPressed(new ElevatorWinchCmd(5214)); //midhatch
+    altnine.whenPressed(new ElevatorWinchCmd(4500)); 
+    altone.whenPressed(new ElevatorWinchCmd(4700)); //midhatch 5214
     altthree.whenPressed(new ElevatorWinchCmd(3100)); //lowcargo
     altfour.whenPressed(new ElevatorWinchCmd(7130)); //midcargo
-    alttwo.whenPressed(new ElevatorWinchCmd(8938)); //highhatch
+    alttwo.whenPressed(new ElevatorWinchCmd(8438)); //highhatch
     altsix.whenPressed(new ElevatorWinchCmd(10700));//highcargo
-    altfive.whenPressed(new ElevatorWinchCmd(1000)); //Hatchpanel
-    altten.whenPressed(new ElevatorWinchCmd(5000));
-    // nine.whenPressed(new ElevatorTiltCmd(Value.kForward));
-    alttwelve.whenPressed(new DriveBackwardCmd(5, .4));
-
+    altfive.whenPressed(new ElevatorWinchCmd(500)); //Hatchpanel
+    altten.whenPressed(new ElevatorWinchCmd(4500));
+    alttwelve.whenPressed(new ElevatorTiltCmd(Value.kForward));
+    alteleven.whenPressed(new ElevatorTiltCmd(Value.kReverse));
+    altseven.whenPressed(new DriveBackwardCmd(5, .4));
     //three.whenPressed(new Autofront());
     //altOne.whenPressed(new ElevatorWinchCmd(1000)); //CHANGE TO CALCULATED VALUE HEIGHTS 
     //altTwo.whenPressed(new ElevatorWinchCmd(2500));

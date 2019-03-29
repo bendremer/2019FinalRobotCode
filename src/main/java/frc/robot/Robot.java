@@ -26,6 +26,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.SPI;
 import frc.robot.commands.Autofront;
+import frc.robot.commands.CentreHatch;
 import frc.robot.commands.DriveCmd;
 import frc.robot.commands.AutoRight1;
 import frc.robot.commands.AutoRight2;
@@ -96,7 +97,7 @@ public class Robot extends TimedRobot {
     m_chooser.addObject("Left1", new AutoLeft1());
     m_chooser.addObject("Left2", new AutoLeft2());
     m_chooser.addObject("Left3", new AutoLeft3());
-
+    m_chooser.addObject("centerhatch", new CentreHatch());
     m_chooser.addObject("Right1", new AutoRight1());
     m_chooser.addObject("Right2", new AutoRight2());
     m_chooser.addObject("Right3", new AutoRight3());

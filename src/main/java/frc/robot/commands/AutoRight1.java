@@ -29,7 +29,7 @@ public class AutoRight1 extends CommandGroup {
     addSequential(new RotateCmd(-90));
 
     addSequential(new YeetCargoCmd());
-    addSequential(new DriveBackwardCmd(20,.6));
+    addSequential(new DriveBackwardCmd(12,.6));
     addSequential(new ElevatorTiltCmd(Value.kForward));
     addSequential(new WaitCommand(2));
     addSequential(new ElevatorDownResetCmd());
