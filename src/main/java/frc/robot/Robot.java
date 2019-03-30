@@ -31,6 +31,7 @@ import frc.robot.commands.DriveCmd;
 import frc.robot.commands.AutoRight1;
 import frc.robot.commands.AutoRight2;
 import frc.robot.commands.AutoRight3;
+import frc.robot.commands.AutoRightHatch;
 import frc.robot.commands.AutoLeft1;
 import frc.robot.commands.AutoLeft2;
 import frc.robot.commands.AutoLeft3;
@@ -101,7 +102,7 @@ public class Robot extends TimedRobot {
     m_chooser.addObject("Right1", new AutoRight1());
     m_chooser.addObject("Right2", new AutoRight2());
     m_chooser.addObject("Right3", new AutoRight3());
-
+    m_chooser.addObject("RightHatch1", new AutoRightHatch());
     SmartDashboard.putData("Auto mode", m_chooser);
   
     driveSub.encoderReset();

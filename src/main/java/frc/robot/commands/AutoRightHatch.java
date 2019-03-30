@@ -15,14 +15,17 @@ public class AutoRightHatch extends CommandGroup {
    * Add your docs here.
    */
   public AutoRightHatch() {
-    addSequential(new DriveForwardCmd(182,.6)); //This was good in Walpole
+    addSequential(new DriveForwardCmd(180,.6)); //This was good in Walpole
     //addSequential(new DriveForwardCmd(2,.5)); //Use this for testing
-    addSequential(new RotateCmd(-90));
-    addSequential(new DriveBackwardCmd(20, .6));
+    addSequential(new RotateCmd(-87));
+    addSequential(new DriveBackwardCmd(10, .6));
     addSequential(new ElevatorTiltCmd(Value.kForward));
     addSequential(new ElevatorDownResetCmd());
-    addSequential(new ElevatorWinchCmd(1000));
-    addSequential(new PushoutCmd());
+    addSequential(new ElevatorWinchCmd(500));
+    addSequential(new DriveForwardCmd(15, .6));
+    addSequential(new ElevatorDownResetCmd());
+    addSequential(new DriveBackwardCmd(10, .6));
+
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());

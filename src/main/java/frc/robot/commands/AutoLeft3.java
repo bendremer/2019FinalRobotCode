@@ -21,11 +21,11 @@ public class AutoLeft3 extends CommandGroup {
     // addSequential(new Command2());
     // these will run in order.
    
-    addSequential(new DriveForwardCmd(255,.6)); //This was good in Walpole
+    addSequential(new DriveForwardCmd(220,.6)); //This was good in Walpole
     //addSequential(new DriveForwardCmd(2,.5)); //Use this for testing
     addSequential(new ResetElevatorEncoderCommand());
     addSequential(new ElevatorWinchCmd(450));
-    addSequential(new RotateCmd(90));
+    addSequential(new RotateCmd(82));
 
     addSequential(new YeetCargoCmd());
     addSequential(new DriveBackwardCmd(12,.6));

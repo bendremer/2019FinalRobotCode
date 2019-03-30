@@ -19,6 +19,7 @@ import frc.robot.commands.ElevatorTiltCmd;
 import frc.robot.commands.ElevatorWinchCmd;
 import frc.robot.commands.FrontDownCmd;
 import frc.robot.commands.FrontUpCmd;
+import frc.robot.commands.HatchSwitch;
 // import frc.robot.commands.PushoutCmd;
 import frc.robot.commands.PushoutCmd;
 // import frc.robot.commands.DriveForwardCmd;
@@ -182,7 +183,7 @@ public class OI {
     //twelve.whenPressed(new DriveBackwardCmd(2,.5));
     
     // Hatch Release Command
-    six.whenPressed(new PushoutCmd());
+    six.whenPressed(new HatchSwitch());
 
     // PLEASE KEEP THIS COMMENTED FOR NOW
 
