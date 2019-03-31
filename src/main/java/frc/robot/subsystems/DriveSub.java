@@ -65,10 +65,10 @@ public class DriveSub extends Subsystem {
     zAdjustedValue=squareInput(zValue)/1.2;
     
     if (Math.abs(zValue)>.1 && zValue<0){ 
-      zAdjustedValue=(squareInput(zValue)/1.5)-.3;
+      zAdjustedValue=(squareInput(zValue)/1.5)-.2;
      }
     if (Math.abs(zValue)>.1 && zValue>0){ 
-      zAdjustedValue=(squareInput(zValue)/1.5)+.3;
+      zAdjustedValue=(squareInput(zValue)/1.5)+.2;
     }
     
     //This next line overrides all the other stuff and feeds straight joystic values.

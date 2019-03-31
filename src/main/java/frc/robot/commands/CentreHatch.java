@@ -22,10 +22,18 @@ public class CentreHatch extends CommandGroup {
     addSequential(new WaitCommand(2));
     addSequential(new ElevatorDownResetCmd());
     addSequential(new ElevatorWinchCmd(500));
-    addSequential(new DriveForwardCmd(18,.45));
+    addSequential(new HatchSwitch());
+    addSequential(new DriveForwardCmd(17,.45));
     addSequential(new ElevatorDownResetCmd());
     addSequential(new DriveBackwardCmd(20,.6));
     // Add Commands here:
+    // Im gonna add a comment just so I can say I changed something in the code;
+    // He'll never notice
+    //
+    //
+    //
+    //
+
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
     // these will run in order.

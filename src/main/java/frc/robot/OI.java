@@ -15,6 +15,7 @@ import frc.robot.commands.Autofront;
 import frc.robot.commands.DriveBackwardCmd;
 import frc.robot.commands.DriveForwardCmd;
 import frc.robot.commands.ElevatorDownResetCmd;
+import frc.robot.commands.ElevatorRestCmd;
 import frc.robot.commands.ElevatorTiltCmd;
 import frc.robot.commands.ElevatorWinchCmd;
 import frc.robot.commands.FrontDownCmd;
@@ -120,14 +121,14 @@ public class OI {
     eleven.whenPressed(new ElevatorWinchCmd(5000));
     //twelve.whenPressed(new ElevatorWinchCmd(500));
 
-    altnine.whenPressed(new ElevatorWinchCmd(4500)); 
+    altnine.whenPressed(new ElevatorRestCmd()); 
     altone.whenPressed(new ElevatorWinchCmd(4700)); //midhatch 5214
     altthree.whenPressed(new ElevatorWinchCmd(3100)); //lowcargo
     altfour.whenPressed(new ElevatorWinchCmd(7130)); //midcargo
     alttwo.whenPressed(new ElevatorWinchCmd(8438)); //highhatch
     altsix.whenPressed(new ElevatorWinchCmd(10700));//highcargo
     altfive.whenPressed(new ElevatorWinchCmd(500)); //Hatchpanel
-    altten.whenPressed(new ElevatorWinchCmd(4500));
+    altten.whenPressed(new ElevatorRestCmd());
     alttwelve.whenPressed(new ElevatorTiltCmd(Value.kForward));
     alteleven.whenPressed(new ElevatorTiltCmd(Value.kReverse));
     altseven.whenPressed(new DriveBackwardCmd(5, .4));

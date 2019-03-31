@@ -9,36 +9,14 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.command.WaitCommand;
 
-public class Autofront extends CommandGroup {
+public class ElevatorRestCmd extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public Autofront() {
-
-    addSequential(new DriveForwardCmd(80,.6)); //This was good in Walpole
-    //addSequential(new DriveForwardCmd(2,.5)); //Use this for testing
-    addSequential(new ResetElevatorEncoderCommand());
-    addSequential(new ElevatorWinchCmd(450));
-
-    addSequential(new YeetCargoCmd());
-    addSequential(new DriveBackwardCmd(12,.6));
-    addSequential(new ElevatorTiltCmd(Value.kForward));
-    addSequential(new WaitCommand(2));
-    addSequential(new ElevatorDownResetCmd());
-    addSequential(new ElevatorWinchCmd(150));
-    // if(0==0){
-    //   if(true){
-    //     System.out.print("0 is equal to zero!");
-    //   }else{
-    //     System.out.print("HELP!");
-    //   }
-
-    // }else{
-    //   System.out.print("HELP!");
-    // }
-
+  public ElevatorRestCmd() {
+    addSequential(new ElevatorWinchCmd(3000));
+    addParallel(new ElevatorTiltCmd(Value.kReverse));
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
