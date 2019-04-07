@@ -7,8 +7,6 @@
 
 package frc.robot.commands;
 
-import java.io.Console;
-
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.CargoLoader;

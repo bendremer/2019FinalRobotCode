@@ -13,12 +13,14 @@ import frc.robot.subsystems.ElevatorWinch;
 
 public class ElevatorDownResetCmd extends Command {
   boolean hitBottom;
+  boolean cmdFinished;
   
   public ElevatorDownResetCmd() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.elevatorWinch);
     hitBottom=false;
+    cmdFinished=false;
   }
 
   // Called just before this Command runs the first time
@@ -32,21 +34,26 @@ public class ElevatorDownResetCmd extends Command {
     
     Robot.elevatorWinch.eleEncoderUpdate();
 
-    if(!Robot.elevatorWinch.elevatorLimitPressed()){
-      Robot.elevatorWinch.rollDown();
-    }else {
-      Robot.elevatorWinch.ElevatorEncoderReset();
-      while (Robot.elevatorWinch.elevatorEncoder.getRaw() <= 25) {
+    if (!hitBottom) {
+      if(!Robot.elevatorWinch.elevatorLimitPressed()){
+        Robot.elevatorWinch.rollDown();
+      } else {
+        Robot.elevatorWinch.ElevatorEncoderReset();
+        hitBottom=true;
+      }
+    } else {
+      if (Robot.elevatorWinch.elevatorEncoder.getRaw() <= 25) {
         Robot.elevatorWinch.elevatorWinch.setSpeed(.3);
-        }
-      hitBottom=true;
+      } else {
+          cmdFinished=true;
+      }
     }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(hitBottom){ 
+    if(cmdFinished){ 
       return true;
     } else {
       return false;

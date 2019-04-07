@@ -18,7 +18,7 @@ public class ElevatorTune extends Command {
     double joyOneVal;
   public ElevatorTune() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_subsystem);
+
   }
 
   // Called just before this Command runs the first time

@@ -11,23 +11,14 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.Autofront;
-import frc.robot.commands.DriveBackwardCmd;
-import frc.robot.commands.DriveForwardCmd;
-import frc.robot.commands.ElevatorDownResetCmd;
 import frc.robot.commands.ElevatorRestCmd;
 import frc.robot.commands.ElevatorTiltCmd;
 import frc.robot.commands.ElevatorWinchCmd;
 import frc.robot.commands.FrontDownCmd;
 import frc.robot.commands.FrontUpCmd;
 import frc.robot.commands.HatchSwitch;
-// import frc.robot.commands.PushoutCmd;
-import frc.robot.commands.PushoutCmd;
-// import frc.robot.commands.DriveForwardCmd;
 import frc.robot.commands.RollinCmd;
 import frc.robot.commands.RolloutCmd;
-// import frc.robot.commands.RotateCmd;
-import frc.robot.commands.RotateCmd;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -131,7 +122,6 @@ public class OI {
     altten.whenPressed(new ElevatorRestCmd());
     alttwelve.whenPressed(new ElevatorTiltCmd(Value.kForward));
     alteleven.whenPressed(new ElevatorTiltCmd(Value.kReverse));
-    altseven.whenPressed(new DriveBackwardCmd(5, .4));
     //three.whenPressed(new Autofront());
     //altOne.whenPressed(new ElevatorWinchCmd(1000)); //CHANGE TO CALCULATED VALUE HEIGHTS 
     //altTwo.whenPressed(new ElevatorWinchCmd(2500));
