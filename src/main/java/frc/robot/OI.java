@@ -11,6 +11,11 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.chenyxVision.AutoRun;
+import frc.robot.commands.Autofront;
+import frc.robot.commands.DriveBackwardCmd;
+import frc.robot.commands.DriveForwardCmd;
+import frc.robot.commands.ElevatorDownResetCmd;
 import frc.robot.commands.ElevatorRestCmd;
 import frc.robot.commands.ElevatorTiltCmd;
 import frc.robot.commands.ElevatorWinchCmd;
@@ -33,6 +38,7 @@ public class OI {
   public double cargoshipc = 5000;
   public double midhatch = 000000;
   public double highhatch = 0000000;
+  public AutoRun visionCmd = new AutoRun();
 
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
@@ -122,6 +128,9 @@ public class OI {
     altten.whenPressed(new ElevatorRestCmd());
     alttwelve.whenPressed(new ElevatorTiltCmd(Value.kForward));
     alteleven.whenPressed(new ElevatorTiltCmd(Value.kReverse));
+    altseven.whenPressed(visionCmd);
+    alteight.cancelWhenPressed(visionCmd);
+    //altseven.whenPressed(new DriveBackwardCmd(5, .4));
     //three.whenPressed(new Autofront());
     //altOne.whenPressed(new ElevatorWinchCmd(1000)); //CHANGE TO CALCULATED VALUE HEIGHTS 
     //altTwo.whenPressed(new ElevatorWinchCmd(2500));
