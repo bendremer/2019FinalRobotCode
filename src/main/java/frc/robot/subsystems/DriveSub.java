@@ -52,6 +52,7 @@ public class DriveSub extends Subsystem {
   public double yValue;
   public double zAdjustedValue;
   public double yAdjustedValue;
+  public double rateAvg;
 
 
   //public static ADXRS450_Gyro Gyro = new ADXRS450_Gyro(); 
@@ -73,11 +74,12 @@ public class DriveSub extends Subsystem {
     
     //This next line overrides all the other stuff and feeds straight joystic values.
     //zAdjustedValue=zValue;
+    /*
     System.out.print("Z JoyStick: ");
     System.out.print(zValue);
     System.out.print(" Adjsuted Z JoyStick: ");
     System.out.println(zAdjustedValue);
-    
+    */
     DriveBase.arcadeDrive(yAdjustedValue, zAdjustedValue);
     //DriveBase.arcadeDrive(squareInput(-joystickZero.getY())/1.3, squareInput(joystickZero.getZ())/1.2);
     }
@@ -98,7 +100,7 @@ public class DriveSub extends Subsystem {
 		m_encoderRight.setReverseDirection(false);
 		m_encoderRight.setSamplesToAverage(7);
 
-		m_encoderLeft.setDistancePerPulse((Math.PI * 6) / 1024);
+    m_encoderLeft.setDistancePerPulse((Math.PI * 6) / 1024);
 		// m_encoderLeft.setMaxPeriod(.1);
 		m_encoderLeft.setMinRate(1);
 		m_encoderLeft.setReverseDirection(true);
@@ -135,6 +137,7 @@ public class DriveSub extends Subsystem {
     distanceLeft = m_encoderLeft.getDistance();
     rateRight = m_encoderRight.getRate();
     rateLeft = m_encoderLeft.getRate();
+    rateAvg = (rateRight + rateLeft)/2;
     avgDistance = (distanceLeft + distanceRight)/2;
     SmartDashboard.putNumber("Right Distance", distanceRight);
     SmartDashboard.putNumber("Left Distance", distanceLeft);
