@@ -12,12 +12,12 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.SPI;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveCmd;
 /**
@@ -52,9 +52,9 @@ public class DriveSub extends Subsystem {
   public double yValue;
   public double zAdjustedValue;
   public double yAdjustedValue;
+  public static double yFactor = 1.2;
+  public double zFactor = 1.5;
   public double rateAvg;
-
-
   //public static ADXRS450_Gyro Gyro = new ADXRS450_Gyro(); 
   public static AHRS Gyro = new AHRS(SPI.Port.kMXP);
 
@@ -62,24 +62,25 @@ public class DriveSub extends Subsystem {
     // Experimental throttle curbve stuff -- Originall arcadeDeive line is below (commented out)
     yValue=joystickZero.getY();
     zValue=joystickZero.getZ();
-    yAdjustedValue=squareInput(-yValue)/1.3;
-    zAdjustedValue=squareInput(zValue)/1.2;
     
+    yAdjustedValue=squareInput(-yValue)/(yFactor);
+    zAdjustedValue=squareInput(zValue);
+    if (paddleTuner()<0){
+      zFactor = 5.5;
+      yFactor = 1.6;
+    } else if (paddleTuner()>0){
+      zFactor = 1.5;
+      yFactor = 1.2;
+    }
     if (Math.abs(zValue)>.1 && zValue<0){ 
-      zAdjustedValue=(squareInput(zValue)/1.5)-.2;
+      zAdjustedValue=(squareInput(zValue)/zFactor)-.2;
      }
     if (Math.abs(zValue)>.1 && zValue>0){ 
-      zAdjustedValue=(squareInput(zValue)/1.5)+.2;
+      zAdjustedValue=(squareInput(zValue)/zFactor)+.2;
     }
     
     //This next line overrides all the other stuff and feeds straight joystic values.
     //zAdjustedValue=zValue;
-    /*
-    System.out.print("Z JoyStick: ");
-    System.out.print(zValue);
-    System.out.print(" Adjsuted Z JoyStick: ");
-    System.out.println(zAdjustedValue);
-    */
     DriveBase.arcadeDrive(yAdjustedValue, zAdjustedValue);
     //DriveBase.arcadeDrive(squareInput(-joystickZero.getY())/1.3, squareInput(joystickZero.getZ())/1.2);
     }
@@ -91,7 +92,9 @@ public class DriveSub extends Subsystem {
       return (input*input);
     }
   }
-
+  public double paddleTuner(){
+    return Robot.m_oi.joystickZero.getRawAxis(3);
+  }
 
   public void encoderInit(){
     m_encoderRight.setDistancePerPulse((Math.PI * 6) / 1024);

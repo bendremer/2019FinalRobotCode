@@ -22,13 +22,8 @@ import frc.robot.commands.ElevatorWinchCmd;
 import frc.robot.commands.FrontDownCmd;
 import frc.robot.commands.FrontUpCmd;
 import frc.robot.commands.HatchSwitch;
-// import frc.robot.commands.PushoutCmd;
-import frc.robot.commands.PushoutCmd;
-// import frc.robot.commands.DriveForwardCmd;
 import frc.robot.commands.RollinCmd;
 import frc.robot.commands.RolloutCmd;
-// import frc.robot.commands.RotateCmd;
-import frc.robot.commands.RotateCmd;
 
 /**
  * This class is the glue that binds the controls on the physical operator

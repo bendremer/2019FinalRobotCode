@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
-import frc.robot.commands.ElevatorWinchCmd;
 
 /**
  * Add your docs here.
@@ -52,9 +51,9 @@ public class ElevatorWinch extends Subsystem {
     SmartDashboard.putBoolean("Elevator Limit", elevatorLimitPressed());
 		if (elevatorLimitPressed()) {
       ElevatorEncoderReset();
-      while (elevatorEncoder.getRaw() <= 20) { //was0
-        elevatorWinch.setSpeed(.3);
-      }
+      // while (elevatorEncoder.getRaw() <= 20) { //was0
+      //   elevatorWinch.setSpeed(.3);
+      // }
       elevatorWinch.setSpeed(.08);
       System.out.println("*** Elevator Limit Switch Pressed ***");
 		}
