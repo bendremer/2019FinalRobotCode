@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.SPI;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveCmd;
 /**
@@ -89,7 +90,9 @@ public class DriveSub extends Subsystem {
       return (input*input);
     }
   }
-
+  public double paddleTuner(){
+    return Robot.m_oi.joystickZero.getRawAxis(3);
+  }
 
   public void encoderInit(){
     m_encoderRight.setDistancePerPulse((Math.PI * 6) / 1024);
