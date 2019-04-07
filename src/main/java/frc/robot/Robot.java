@@ -48,7 +48,9 @@ import frc.robot.commands.ElevatorTune;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 // import frc.robot.subsystems.MecanumDriver;
 import frc.robot.subsystems.HatchRelease;
+import frc.robot.chenyxVision.AutoRun;
 // import frc.robot.subsystems.PIDElevator;
+import frc.robot.chenyxVision.HUD;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -70,7 +72,8 @@ public class Robot extends TimedRobot {
   public static ElevatorTilt elevatorTilt = new ElevatorTilt();
   public static ElevatorWinch elevatorWinch = new ElevatorWinch();
   public static FrontClimber frontClimber = new FrontClimber();
-  public static UsbCamera camera;
+  //public static UsbCamera camera;
+  private static HUD hud = HUD.getInstance();
  
   public Command elevatorTuning = new ElevatorTune();
   public Command drivingCmd = new DriveCmd();
@@ -89,7 +92,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    camera = CameraServer.getInstance().startAutomaticCapture();
+    //camera = CameraServer.getInstance().startAutomaticCapture();
 
     m_oi = new OI();
     
