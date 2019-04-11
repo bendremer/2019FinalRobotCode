@@ -54,7 +54,7 @@ public class ElevatorWinch extends Subsystem {
       // while (elevatorEncoder.getRaw() <= 20) { //was0
       //   elevatorWinch.setSpeed(.3);
       // }
-      elevatorWinch.setSpeed(.08);
+      elevatorWinch.setSpeed(.3);
       System.out.println("*** Elevator Limit Switch Pressed ***");
 		}
 }

@@ -52,7 +52,7 @@ public class DriveSub extends Subsystem {
   public double yValue;
   public double zAdjustedValue;
   public double yAdjustedValue;
-  public static double yFactor = 1.2;
+  public double yFactor = 1.2;
   public double zFactor = 1.5;
   public double rateAvg;
   //public static ADXRS450_Gyro Gyro = new ADXRS450_Gyro(); 
@@ -66,7 +66,7 @@ public class DriveSub extends Subsystem {
     yAdjustedValue=squareInput(-yValue)/(yFactor);
     zAdjustedValue=squareInput(zValue);
     if (paddleTuner()<0){
-      zFactor = 5.5;
+      zFactor = 2;
       yFactor = 1.6;
     } else if (paddleTuner()>0){
       zFactor = 1.5;
