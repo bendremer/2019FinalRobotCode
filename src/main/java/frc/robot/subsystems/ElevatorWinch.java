@@ -23,6 +23,7 @@ public class ElevatorWinch extends Subsystem {
   public static DigitalInput elevatorLimitSwitch  = new DigitalInput(RobotMap.elevatorLimitPort);
   public static double setHeight; 
   public static double height;
+  public int CurrentHeight;
   public static double secondLevelHeight = 2500;
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -35,6 +36,9 @@ public class ElevatorWinch extends Subsystem {
 
   public void ElevatorEncoderReset(){
     elevatorEncoder.reset();
+  }
+  public int GetCurrentHeight(){
+    return elevatorEncoder.getRaw();
   }
   public void eleEncoderUpdate(){
     //height = (elevatorEncoder.getRaw()/240)*(Math.PI * 1.25); // In inches
@@ -60,10 +64,10 @@ public class ElevatorWinch extends Subsystem {
 }
 
   public void rollUp(){
-    elevatorWinch.setSpeed(.75); //+ stopPower(height)); was .6, 
+    elevatorWinch.setSpeed(1); //+ stopPower(height)); was .6, 
   }
   public void rollDown(){
-    elevatorWinch.setSpeed(-.5); // + stopPower(height)); //was -.2
+    elevatorWinch.setSpeed(-.6); // + stopPower(height)); //was -.2
   }
   public void stop(){
     elevatorWinch.setSpeed(stopPower(height));
@@ -71,7 +75,7 @@ public class ElevatorWinch extends Subsystem {
   }
 
   public void rollUpSlow(){
-    elevatorWinch.setSpeed(.9); //was 0.6
+    elevatorWinch.setSpeed(1); //was 0.6
   }
   public void rollDownSlow() {
     elevatorWinch.setSpeed(-.6); //was -0.2

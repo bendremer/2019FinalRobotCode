@@ -15,8 +15,9 @@ public class ElevatorRestCmd extends CommandGroup {
    * Add your docs here.
    */
   public ElevatorRestCmd() {
-    addSequential(new ElevatorWinchCmd(3000));
+    addSequential(new ElevatorWinchCmd(3150));
     addParallel(new ElevatorTiltCmd(Value.kReverse));
+
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());

@@ -5,7 +5,7 @@ import frc.robot.chenyxVision.libs.Vector;
 
 public class Constants{
     // the vector from the driving camera to the center of robot
-    public static final Pt CAMERA_OFFSET = new Pt(-8, 0);
+    public static final Pt CAMERA_OFFSET = new Pt(-12.4, 0);
     // localization and vision constants
     public static final double VISION_DISTANCE_CONSTANT = 211 / 25.4; //actualDis*imageHeight (mm*px)
     public static final int MAX_HISTORY_SIZE = 150;
@@ -18,13 +18,13 @@ public class Constants{
     public static final double VISION_DISCONNECT_TIME=2;
 
     //auto constants
-    public static final double MIN_TURN_SPEED=0.08; //rotational pwr, TODO tune this
+    public static final double MIN_TURN_SPEED=0.4; //rotational pwr, TODO tune this |was 0.08
     public static final double MAX_ALLOWED_ANGLE_ERROR = 3; //deg
 
-    public static final double SHOOT_DIS=300 / 25.4; //mm, TODO tune this
+    public static final double SHOOT_DIS=850 / 25.4; //mm, TODO tune this
     public static final double CLOSE_DIS=SHOOT_DIS + 700/25.4; //mm, TODO tune this according to above
     public static final double START_ADDITION_SPEED=0.25; //linear pwr
-    public static final double CLOSE_SPEED=0.26; //linear pwr
+    public static final double CLOSE_SPEED=0.30; //linear pwr
     public static final double CLOSE_ANGULAR_ERROR_PENALTY=0.0135; // deg/linear_pwr
 
     public static final double PHYSICAL_OFFSET=0; // adjust it if camera is not centered

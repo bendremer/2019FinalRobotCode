@@ -21,6 +21,8 @@ import frc.robot.commands.ElevatorTiltCmd;
 import frc.robot.commands.ElevatorWinchCmd;
 import frc.robot.commands.FrontDownCmd;
 import frc.robot.commands.FrontUpCmd;
+import frc.robot.commands.HatchLetGo;
+import frc.robot.commands.HatchPickUp;
 import frc.robot.commands.HatchSwitch;
 import frc.robot.commands.RollinCmd;
 import frc.robot.commands.RolloutCmd;
@@ -125,13 +127,14 @@ public class OI {
     alttwo.whenPressed(new ElevatorWinchCmd(8438)); //highhatch
     altsix.whenPressed(new ElevatorWinchCmd(10700));//highcargo
     altfive.whenPressed(new ElevatorWinchCmd(500)); //Hatchpanel
-    altten.whenPressed(new ElevatorRestCmd());
+    //altten.whenPressed(new ElevatorRestCmd());
     alttwelve.whenPressed(new ElevatorTiltCmd(Value.kForward));
-    alteleven.whenPressed(new ElevatorTiltCmd(Value.kReverse));
+    altten.whenPressed(new ElevatorTiltCmd(Value.kForward));
     altseven.whenPressed(visionCmd);
     alteight.cancelWhenPressed(visionCmd);
     //altseven.whenPressed(new DriveBackwardCmd(5, .4));
-    //three.whenPressed(new Autofront());
+    three.whenPressed(new HatchLetGo());
+    five.whenPressed(new HatchPickUp());
     //altOne.whenPressed(new ElevatorWinchCmd(1000)); //CHANGE TO CALCULATED VALUE HEIGHTS 
     //altTwo.whenPressed(new ElevatorWinchCmd(2500));
     //altThree.whenPressed(new ElevatorWinchCmd(2750));

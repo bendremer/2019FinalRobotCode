@@ -7,28 +7,19 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.Robot;
+import frc.robot.subsystems.ElevatorWinch;
 
-public class AutoRightHatch extends CommandGroup {
+public class HatchPickUp extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public AutoRightHatch() {
-    addSequential(new DriveForwardCmd(180,.6)); //This was good in Walpole
-    //addSequential(new DriveForwardCmd(2,.5)); //Use this for testing
-    addSequential(new RotateCmd(-87));
-    addSequential(new DriveBackwardCmd(10, .6));
-    addSequential(new ElevatorTiltCmd(Value.kForward));
-    addSequential(new ElevatorDownResetCmd());
-    addSequential(new ElevatorWinchCmd(500));
-    addSequential(new DriveForwardCmd(15, .6));
-    addSequential(new HatchSwitch());
-    addSequential(new ElevatorDownResetCmd());
-    addSequential(new DriveBackwardCmd(10, .6));
-
+  public HatchPickUp() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
+    addSequential(new ElevatorWinchCmd(Robot.elevatorWinch.GetCurrentHeight()+950));
+    addSequential(new HatchSwitch());
     // addSequential(new Command2());
     // these will run in order.
 
