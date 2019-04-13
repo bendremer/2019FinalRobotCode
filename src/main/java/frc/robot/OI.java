@@ -41,7 +41,7 @@ public class OI {
   public double midhatch = 000000;
   public double highhatch = 0000000;
   public AutoRun visionCmd = new AutoRun();
-
+  public HatchPickUp VisionHatch = new HatchPickUp();
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
   //// joystick.
@@ -130,11 +130,11 @@ public class OI {
     //altten.whenPressed(new ElevatorRestCmd());
     alttwelve.whenPressed(new ElevatorTiltCmd(Value.kForward));
     altten.whenPressed(new ElevatorTiltCmd(Value.kForward));
-    altseven.whenPressed(visionCmd);
-    alteight.cancelWhenPressed(visionCmd);
+    //altseven.whenPressed(visionCmd);
+    alteight.cancelWhenPressed(VisionHatch);
     //altseven.whenPressed(new DriveBackwardCmd(5, .4));
     three.whenPressed(new HatchLetGo());
-    five.whenPressed(new HatchPickUp());
+    altseven.whenPressed(VisionHatch);
     //altOne.whenPressed(new ElevatorWinchCmd(1000)); //CHANGE TO CALCULATED VALUE HEIGHTS 
     //altTwo.whenPressed(new ElevatorWinchCmd(2500));
     //altThree.whenPressed(new ElevatorWinchCmd(2750));

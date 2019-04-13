@@ -9,15 +9,20 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
+import frc.robot.chenyxVision.AutoRun;
 import frc.robot.subsystems.ElevatorWinch;
 
 public class HatchPickUp extends CommandGroup {
   /**
    * Add your docs here.
    */
+  public AutoRun visionCmd = new AutoRun();
+
   public HatchPickUp() {
+
     // Add Commands here:
     // e.g. addSequential(new Command1());
+    addSequential(visionCmd);
     addSequential(new ElevatorWinchCmd(Robot.elevatorWinch.GetCurrentHeight()+950));
     addSequential(new HatchSwitch());
     // addSequential(new Command2());
